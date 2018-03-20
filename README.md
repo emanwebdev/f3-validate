@@ -1,11 +1,11 @@
-# Fat Free Framework Validator
+# F3 :: Fat Free Framework Forms Validator
 
 A Validation plugin for Fat Free Framework (Forked by GUMP).
 GUMP is a standalone PHP data validation and filtering class.
 
 ## Installation
 
-Copy the `lib\validate.php` file to the lib folder or any root of an auto included folder.
+Copy to the lib folder `lib\validate.php` or to the root of any auto included folder.
 
 ## Getting Started
 
@@ -17,7 +17,7 @@ $valid = Validate::is_valid($data, array(
 ));
 
 if($valid === true) {
-	// continue
+	// OK, let's use the posted values
 } else {
 	print_r($valid);
 }
@@ -37,47 +37,47 @@ Available Validators
 * integer `Ensure only integer key values`
 * boolean `Checks for PHP accepted boolean values, returns TRUE for "1", "true", "on" and "yes"`
 * float `Checks for float values`
+* exists_url `Check to see if the URL exists and is accessible`
 * valid_url `Check for valid URL or subdomain`
-* url_exists `Check to see if the url exists and is accessible`
 * valid_ip `Check for valid generic IP address`
 * valid_ipv4 `Check for valid IPv4 address`
 * valid_ipv6 `Check for valid IPv6 address`
-* valid_cc `Check for a valid credit card number (Uses the MOD10 Checksum Algorithm)`
+* valid_cc `Check for a valid credit card number. Uses the MOD10 Checksum Algorithm`
 * valid_name `Check for a valid format human name`
 * contains,n `Verify that a value is contained within the pre-defined value set`
-* containsList,n `Verify that a value is contained within the pre-defined value set. The list of valid values must be provided in semicolon-separated list format (like so: value1;value2;value3;..;valuen). If a validation error occurs, the list of valid values is not revelead (this means, the error will just say the input is invalid, but it won't reveal the valid set to the user.`
+* containsList,n `Verify that a value is contained within the pre-defined value set. The list of valid values must be provided in semicolon-separated list format (like so: value1;value2;value3;..;valuen). If a validation error occurs, the list of valid values is not revelead (this means, the error message will just tell the input is invalid, without displaying the valid set to the screen/user.`
 * doesNotcontainList,n `Verify that a value is not contained within the pre-defined value set. Semicolon (;) separated, list not outputted. See the rule above for more info.`
 * street_address `Checks that the provided string is a likely street address. 1 number, 1 or more space, 1 or more letters`
-* iban `Check for a valid IBAN`
+* valid_iban `Check for a valid IBAN`
 * min_numeric `Determine if the provided numeric value is higher or equal to a specific value`
 * max_numeric `Determine if the provided numeric value is lower or equal to a specific value`
 * date `Determine if the provided input is a valid date (ISO 8601)`
 * starts `Ensures the value starts with a certain character / set of character`
-* phone_number `Validate phone numbers that match the following examples: 555-555-5555 , 5555425555, 555 555 5555, 1(519) 555-4444, 1 (519) 555-4422, 1-555-555-5555`
+* valid_phone_number `Validate phone numbers that match the following examples: 555-555-5555 , 5555425555, 555 555 5555, 1(519) 555-4444, 1 (519) 555-4422, 1-555-555-5555`
 * regex `You can pass a custom regex using the following format: 'regex,/your-regex/'`
 * valid_json_string `validate string to check if it's a valid json format`
-* equalsfield `Check if two fields are equals`
+* equals_fields `Check if two fields are equals`
 
 Available Filters
 -----------------
-Filters can be any PHP function that returns a string. You don't need to create your own if a PHP function exists that does what you want the filter to do.
+Filters can be any PHP function that returns a _string_. You can create your own function or use an existing PHP function to use as the filter.
 
 * sanitize_string `Remove script tags and encode HTML entities;`
+* basic_tags `Remove all layout orientated HTML tags from text. Leaving only basic tags`
 * urlencode `Encode url entities`
 * htmlencode `Encode HTML entities`
 * sanitize_email `Remove illegal characters from email addresses`
 * sanitize_numbers `Remove any non-numeric characters`
+* whole_number `Ensure that the provided numeric value is represented as a whole number`
+* noise_words `Remove noise words from string`
 * trim `Remove spaces from the beginning and end of strings`
+* rmpunctuation `Remove all known punctuation characters from a string`
 * base64_encode `Base64 encode the input`
 * base64_decode `Base64 decode the input`
 * sha1 `Encrypt the input with the secure sha1 algorithm`
 * md5 `MD5 encode the input`
-* noise_words `Remove noise words from string`
 * json_encode `Create a json representation of the input`
 * json_decode `Decode a json string`
-* rmpunctuation `Remove all known punctuation characters from a string`
-* basic_tags `Remove all layout orientated HTML tags from text. Leaving only basic tags`
-* whole_number `Ensure that the provided numeric value is represented as a whole number`
 
 Adding custom validators and filters is made easy by using callback functions.
 
